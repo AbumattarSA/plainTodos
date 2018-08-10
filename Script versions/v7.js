@@ -1,4 +1,4 @@
-// The main javascript file for the todo list. Older versions are available for viewing in the repository to allow for a clear development in ideas to be seen.
+// Version 7
 
 var todoList = {
   todos: [],
@@ -63,33 +63,13 @@ var todoList = {
   }
 };
 
-var handlers = {
-  displayTodos: function () {
+var displayTodosBtn = document.getElementById('displayTodosBtn');
+var toggleAllBtn = document.getElementById('toggleAllBtn');
+
+displayTodosBtn.addEventListener('click', function () {
   todoList.displayTodos();
-  },
-  addTodo: function () {
-    var addTodoInput = document.getElementById('addTodoTextInput');
-    todoList.addTodo(addTodoInput.value);
-    addTodoInput.value = '';
-  },
-  changeTodo: function () {
-    var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
-    var changeTodoTextInput = document.getElementById('changeTodoTextInput');
-    todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
-    changeTodoPositionInput.value = '';
-    changeTodoTextInput.value = '';
-  },
-  deleteTodo: function () {
-    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
-    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
-    deleteTodoPositionInput.value = '';
-  },
-  toggleCompleted: function () {
-    var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
-    todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-    toggleCompletedPositionInput.value = '';
-  },
-  toggleAll: function () {
-    todoList.toggleAll();
-  }
-};
+});
+
+toggleAllBtn.addEventListener('click', function () {
+  todoList.toggleAll();
+});
