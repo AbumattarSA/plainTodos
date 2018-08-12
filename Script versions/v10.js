@@ -1,4 +1,4 @@
-// The main javascript file for the todo list. Older versions are available for viewing in the repository to allow for a clear development in ideas to be seen.
+// Version 10
 
 // Modify the todo list.
 var todoList = {
@@ -24,21 +24,23 @@ var todoList = {
     var totalTodos = this.todos.length;
 
     // Get number of completed todos.
-    this.todos.forEach(function(todo) {
-      if (todo.completed === true) {
+    for (var i = 0; i < totalTodos; i++) {
+      if (this.todos[i].completed === true) {
         completedTodos++;
       }
-    });
+    }
 
-    this.todos.forEach(function(todo) {
-      // Case 1: If all true, make all false.
-      if (completedTodos === totalTodos) {
-        todo.completed = false;
-      // Case 2: If all or some are false, make all true.
-      } else {
-        todo.completed = true;
+    // Case 1: If all true, make all false.
+    if (completedTodos === totalTodos) {
+      for (var i = 0; i < totalTodos; i++) {
+        this.todos[i].completed = false;
       }
-    });
+    // Case 2: If all or some are false, make all true.
+    } else {
+      for (var i = 0; i < totalTodos; i++) {
+        this.todos[i].completed = true ;
+      }
+    }
   }
 };
 
@@ -79,22 +81,22 @@ var view = {
   displayTodos: function() {
     var todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
-    todoList.todos.forEach(function(todo, position){
+    for(var i = 0; i < todoList.todos.length; i++) {
       var todoLi = document.createElement('li');
+      var todo = todoList.todos[i];
       var TodoTextWithCompletion = '';
 
       if (todo.completed === true) {
         todoTextWithCompletion = '(X) ' + todo.todoText;
       } else {
         todoTextWithCompletion = '( ) ' + todo.todoText;
-      }
+      };
 
-      todoLi.id = position;
+      todoLi.id = i;
       todoLi.textContent = todoTextWithCompletion;
       todoLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todoLi);
-
-    }, this);
+    }
   },
   createDeleteButton: function() {
   var deleteButton = document.createElement('button');
